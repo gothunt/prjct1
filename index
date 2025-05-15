@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Центральная библиотека имени М. К. Агашиной</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        
+    <header>
+        <h1>Центральная библиотека имени М. К. Агашиной</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="search.html">Поиск</a></li>
+            </ul>
+        </nav>
+        <section>
+            <p>Центральная городская библиотека им. М. К. Агашиной – первая библиотека Волгограда, получившая имя женщины-писателя. Агашинка – культурная площадка для увлекательных мероприятий и интересных встреч со знаменитыми людьми.</p>
+        </section>
+    </header>
+    <section id="contact" class="contact-info">
+        <div class="container">
+            <h2>Контакты</h2>
+            <p><strong>Адрес:</strong>400005, г. Волгоград, пр. В. И. Ленина, д. 42</p>
+            <p><strong>Телефон:</strong>(8442) 23-15-58</p>
+            <p><strong>Email:</strong>volglib@mail.ru</p>
+            <p><strong>Часы работы:</strong></p>
+            <li>Вт-Вс с 11:00 до 19:00 </li>
+            <li>Выходные дни — понедельник</li>
+            <p><strong>Мы ВКонтакте:</strong>https://vk.com/agashinka</p>
+    <footer>
+        <p>&copy;  © 2025 Центральная библиотека имени М. К. Агашиной. Все права защищены.</p>
+    </footer>
+</body>
+</html>
