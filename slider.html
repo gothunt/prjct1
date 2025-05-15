@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Слайдер изображений</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+  }
+
+  h1 {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .slider-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .slide {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .slide img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Кнопки навигации */
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+  }
+
+  .prev {
+    left: 20px;
+  }
+
+  .next {
+    right: 20px;
+  }
+
+  /* Адаптивность */
+  @media (max-width: 600px) {
+    .prev, .next {
+      padding: 8px;
+      font-size: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Наш слайдер изображений 📸</h1>
+
+<div class="slider-container">
+  <div class="slides" id="slides">
+    <div class="slide"><img src="https://images.unsplash.com/photo-1549887534-7c6808420d52?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Книга 1" /></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Книга 2" /></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Книга 3" /></div>
+  </div>
+  <button class="prev" id="prevBtn">&#10094;</button>
+  <button class="next" id="nextBtn">&#10095;</button>
+</div>
+
+<script>
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
+  let currentIndex = 0;
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  function showSlide(index) {
+    // Ограничение по границам
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+    currentIndex = index;
+    const offset = -index * 100;
+    slides.style.transform = `translateX(${offset}%)`;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    showSlide(currentIndex - 1);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    showSlide(currentIndex + 1);
+  });
+
+  // Автоматическая смена слайдов каждые 3 секунды
+  setInterval(() => {
+    showSlide(currentIndex + 1);
+  }, 3000);
+
+  // Изначально показываем первый слайд
+  showSlide(0);
+</script>
+
+</body>
+</html>

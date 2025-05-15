@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Поиск</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+<h1>Поиск</h1>
+<nav>
+<ul>
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="news.html">Новости</a></li>
+    <li><a href="about.html">О нас</a></li>
+    <li><a href="contact.html">Контакты</a></li>
+    <li><a href="catalog.html">Каталог</a></li>
+    <li><a href="search.html">Поиск</a></li>
+</ul>
+</nav>
+</header>
+
+<section>
+<h2>Введите название книги или автора</h2>
+<form id="searchForm">
+<input type="text" id="searchInput" placeholder="Например, 'Толстой'" />
+<button type="submit">Искать</button>
+</form>
+<div id="searchResults"></div>
+</section>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const books = [
+        { title: 'Время жить, время любить', author: 'А. Иванов' },
+        { title: 'Мастер и Маргарита', author: 'М. Булгаков' },
+        { title: 'Война и мир', author: 'Л. Толстой' },
+        { title: 'Преступление и наказание', author: 'Ф. Достоевский' }
+    ];
+    const results = books.filter(book => 
+        book.title.toLowerCase().includes(query) || 
+        book.author.toLowerCase().includes(query)
+    );
+    const resultsDiv = document.getElementById('searchResults');
+    resultsDiv.innerHTML = '';
+    if (results.length === 0) {
+        resultsDiv.innerHTML = '<p>Книги не найдены.</p>';
+    } else {
+        results.forEach(book => {
+            resultsDiv.innerHTML += `<p><strong>${book.title}</strong> — ${book.author}</p>`;
+        });
+    }
+});
+</script>
+
+<footer>
+<p>&copy;  © 2025 Центральная библиотека имени М. К. Агашиной. Все права защищены.</p>
+</footer>
+</body>
+</html>

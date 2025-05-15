@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Новости и события</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+    <h1>Новости и события</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="contact.html">Контакты</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="search.html">Поиск</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section>
+    <h2>Последние новости</h2>
+    <!-- Контейнер для новостей -->
+    <div id="newsContainer"></div>
+    <button id="loadMoreBtn">Показать еще</button>
+</section>
+
+<script>
+    // Массив новостей
+    const newsItems = [
+        {
+            title: 'Книжная выставка "Мир литературы"',
+            date: '15 марта 2024',
+            description: 'Приглашаем всех на нашу ежегодную книжную выставку, где можно ознакомиться с новинками и редкими изданиями. Не пропустите!'
+        },
+        {
+            title: 'Мастер-класс по писательству',
+            date: '10 апреля 2024',
+            description: 'Для любителей творчества — бесплатный мастер-класс по написанию рассказов и стихов. Регистрация обязательна.'
+        },
+        {
+            title: 'День открытых дверей',
+            date: '20 мая 2024',
+            description: 'Познакомьтесь с нашим фондом и сотрудниками. Ждем всех желающих посетить библиотеку и стать членом нашего сообщества!'
+        }
+        // Можно добавить больше новостей
+    ];
+
+    let displayedCount = 0; // счетчик отображенных новостей
+    const batchSize = 2; // сколько показывать за раз
+
+    const container = document.getElementById('newsContainer');
+    const btn = document.getElementById('loadMoreBtn');
+
+    function showNews() {
+        const nextBatch = newsItems.slice(displayedCount, displayedCount + batchSize);
+        nextBatch.forEach(news => {
+            const newsDiv = document.createElement('div');
+            newsDiv.className = 'newsItem';
+            newsDiv.innerHTML = `
+                <h3>${news.title}</h3>
+                <p><em>${news.date}</em></p>
+                <p>${news.description}</p>
+            `;
+            container.appendChild(newsDiv);
+        });
+        displayedCount += batchSize;
+
+        if (displayedCount >= newsItems.length) {
+            btn.style.display = 'none'; // скрыть кнопку, если все новости показаны
+        }
+    }
+
+    // Изначально показываем первые новости
+    showNews();
+
+    // Обработчик кнопки "Показать еще"
+    btn.addEventListener('click', showNews);
+</script>
+
+<style>
+    /* Можно добавить стили для новостей */
+    .newsItem {
+        background-color: #f1f8e9;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+    }
+</style>
+
+<footer>
+    <p>&copy;  © 2025 Центральная библиотека имени М. К. Агашиной. Все права защищены.</p>
+</footer>
+</body>
+</html>

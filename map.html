@@ -1,0 +1,119 @@
+ <!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Интерактивная карта</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f3;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .map-container {
+    position: relative;
+    width: 600px;
+    max-width: 100%;
+  }
+
+  /* Здесь вставьте изображение вашей карты */
+  .map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Области карты */
+  .region {
+    position: absolute;
+    cursor: pointer;
+    /* Для примера, добавим прозрачный фон */
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 2px solid transparent;
+    transition: border 0.3s, background-color 0.3s;
+  }
+
+  /* Цвет при наведении или выборе */
+  .region:hover,
+  .region.active {
+    border: 2px solid #0066cc;
+    background-color: rgba(0, 102, 204, 0.3);
+  }
+
+  /* Позиционирование областей по координатам (пример) */
+  /* Настройте эти стили под вашу карту */
+  /* Например: */
+  #region1 {
+    top: 50px; left: 100px; width: 100px; height: 80px;
+  }
+
+  #region2 {
+    top: 200px; left: 250px; width: 120px; height: 100px;
+  }
+
+  #region3 {
+    top: 80px; left: 400px; width: 150px; height: 100px;
+  }
+
+  /* Стиль блока информации */
+  #info-box {
+    margin-top: 20px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+</style>
+</head>
+<body>
+
+<div class="map-container">
+  <!-- Замените src на изображение вашей карты -->
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Карта" class="map-image" />
+
+  <!-- Области карты -->
+  <div id="region1" class="region" data-name="Регион 1" data-info="Информация о Регионе 1"></div>
+  <div id="region2" class="region" data-name="Регион 2" data-info="Информация о Регионе 2"></div>
+  <div id="region3" class="region" data-name="Регион 3" data-info="Информация о Регионе 3"></div>
+</div>
+
+<!-- Информация о выбранной области -->
+<div id="info-box">
+  <h3>Выберите область на карте</h3>
+  <p id="region-name"></p>
+  <p id="region-info"></p>
+</div>
+
+<script>
+  // Получаем все области
+  const regions = document.querySelectorAll('.region');
+  const regionName = document.getElementById('region-name');
+  const regionInfo = document.getElementById('region-info');
+
+  regions.forEach(region => {
+    region.addEventListener('mouseenter', () => {
+      region.classList.add('active');
+    });
+    region.addEventListener('mouseleave', () => {
+      region.classList.remove('active');
+    });
+    region.addEventListener('click', () => {
+      // Убираем выделение у всех
+      regions.forEach(r => r.classList.remove('active'));
+      // Выделяем выбранную
+      region.classList.add('active');
+
+      // Обновляем информацию
+      const name = region.getAttribute('data-name');
+      const info = region.getAttribute('data-info');
+      regionName.textContent = name;
+      regionInfo.textContent = info;
+    });
+  });
+</script>
+
+</body>
+</html>
